@@ -462,11 +462,20 @@ static void build_net(void) {
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.55f, 0.35f, 1.0f));
                 ImGui::TextWrapped("Update available. Online servers are unreachable until you update.");
                 ImGui::PopStyleColor();
-                ImGui::TextDisabled("You have 0.%d.%d; 0.%d.%d or newer is needed. github.com/z3xox/Tenkaichi3Decomp/releases", mine / 100, mine % 100, min / 100, min % 100);
+                ImGui::TextDisabled("You have 0.%d.%d; 0.%d.%d or newer is needed.", mine / 100, mine % 100, min / 100, min % 100);
+                ImGui::SameLine();
+                if (ImGui::Button("Open download page")) {
+                    SDL_OpenURL("https://github.com/z3xox/Tenkaichi3Decomp/releases/latest");
+                }
+                ImGui::SetItemTooltip("Open the releases page in your browser to download the latest release.");
                 ImGui::Separator();
             } else if (latest > mine) {
                 ImGui::TextColored(ImVec4(1.0f, 0.85f, 0.3f, 1.0f), "Update available: release 0.%d.%d.", latest / 100, latest % 100);
-                ImGui::TextDisabled("github.com/z3xox/Tenkaichi3Decomp/releases");
+                ImGui::SameLine();
+                if (ImGui::Button("Open download page")) {
+                    SDL_OpenURL("https://github.com/z3xox/Tenkaichi3Decomp/releases/latest");
+                }
+                ImGui::SetItemTooltip("Open the releases page in your browser to download the latest release.");
                 ImGui::Separator();
             }
         }
